@@ -1,11 +1,14 @@
 function b_img = circleimagecreator(radius,number,intensities,polarity,gauss_sigma,noise)
 %Creates an 200x200 image of randomly generated circles
-%Radius is radius of the circles
-%Number determines number of circles
+%Author: Peter Mueller
+%Inputs:
+%radius is radius of the circles
+%number determines number of circles
 %intensities is a array of values of possible intensities for the circles
 %polarity changes if the circles are light on dark (0) or dark on light (1)
 %gauss_sigma determines the sigma of the guass blur applied
 %noise is the signal to noise ratio of noise applied, Lower is more noise
+
 
 %Initalize image
 img = zeros(200,200);
