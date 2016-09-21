@@ -1,6 +1,16 @@
-function [acc,centers] = hcircle(image,gradient_sd,r,tresh,intensity_polarity,sigma_mean,sigma_sd,parzen)
+function [acc,centers] = hcircle(image,gradient_sd,r,tresh,intensity_polarity,sig_mean,sig_sd,parzen)
 %Hough Transform for Circles with given Radius
-%By Peter Mueller
+%Author: Peter Mueller\
+%Inputs:
+%image is the image to be analyzed
+%gradient_sd is standard devation of gaussian gradient dervatives
+%r is radius
+%tresh is magnitude treshold for pixels to vote
+%intesnity_polarity is if the circles are light on dark(0) or dark on
+%light(1)
+%sigma_mean is the mean of the sigmoid function determing vote strenght
+%sigma_sd is the standard devation of the previous sigmoid function
+%parzen is the parzen standard devation which is used to blur the votes
 
 image = mat2gray(image);
 %Get Derivatives of the Images
@@ -24,7 +34,7 @@ for cnt = 1:numel(ex)
     x2 =round( ey(cnt) + r*(cos(angle)));
     y2 = round( ex(cnt) - r*(sin(angle)));
     if and(and(x2 < numRow,x2 > 0),and(y2 < numCol,y2 > 0))
-        vote = sigmf(sqrt(abs(ex(cnt)).^2+abs(ey(cnt)).^2),[sigma_mean sigma_sd]);
+        vote = sigmf(sqrt(abs(ex(cnt)).^2+abs(ey(cnt)).^2),[sig_mean sig_sd]);
         acc(x2,y2) = acc(x2,y2) + vote;
         
     end
