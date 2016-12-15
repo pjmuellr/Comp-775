@@ -13,7 +13,9 @@ img_ab=0.75*img_a+0.25*img_b;
 close;
 
 [ox,oy]=snakes(img_ab,bx,by,.1,.05,1,.3,.7,.4,200);
+%Output Mask
 output=poly2mask(ox,oy,size(image,1),size(image,2));
+%Initial Mask
 mask=poly2mask(bx,by,size(image,1),size(image,2));
 
 
